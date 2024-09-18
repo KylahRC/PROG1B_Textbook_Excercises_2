@@ -12,7 +12,6 @@ public class NineInts
 
         System.out.println(forward);
         System.out.println(backward);
-
     }
 
     public static int[] reverseArray(int[] numbers)
