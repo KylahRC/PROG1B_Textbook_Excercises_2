@@ -4,48 +4,41 @@ import java.util.Scanner;
 
 public class DistanceFromAverage
 {
-    public static void main(String args[])
+    public static void main(String[] args)
     {
-        double[] numArray = new double[15];
+        double[] numbers = new double[15];
+        int numbersEnteredCounter = 0;
+        double total = 0;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter number (99999 to exit): ");
-        String numberEntered = scanner.nextLine();
+        System.out.println("Enter up to 15 double values. Enter 99999 to quit:");
 
-        switch (numberEntered)
+        while (numbersEnteredCounter < 15)
         {
-            case "99999":
-                System.exit(0);
+            double input = scanner.nextDouble();
+            if (input == 99999)
+            {
+                break;
+            }
+            numbers[numbersEnteredCounter] = input;
+            total += input;
+            numbersEnteredCounter++;
+        }
 
-            default:
+        if (numbersEnteredCounter == 0)
+        {
+            System.out.println("Error: No numbers were entered.");
+        } else
+        {
+            double average = total / numbersEnteredCounter;
+            System.out.println("Number of values entered: " + numbersEnteredCounter);
+            System.out.println("Average: " + average);
 
-                System.out.println("Enter number (99999 to exit): ");
-                numberEntered = scanner.nextLine();
-
-                switch (numberEntered)
-                {
-                    case "99999":
-                        System.exit(0);
-
-                    default:
-                        double doubleNumberEntered = Double.parseDouble(numberEntered);
-                        int count = 0;
-
-                        numArray[count] = doubleNumberEntered;
-
-                        double total = ++doubleNumberEntered;
-                        double average = (total / count);
-
-                        double distance = doubleNumberEntered - average;
-
-                        System.out.println("Count: " + count);
-                        System.out.println("Number entered: " + doubleNumberEntered);
-                        System.out.println("Average: " + doubleNumberEntered);
-                        System.out.println("Distance from average: " + distance);
-                }
-
+            for (int i = 0; i < numbersEnteredCounter; i++)
+            {
+                double distance = numbers[i] - average;
+                System.out.println("Value: " + numbers[i] + ", Distance from average: " + distance);
+            }
         }
     }
-
-
 }
